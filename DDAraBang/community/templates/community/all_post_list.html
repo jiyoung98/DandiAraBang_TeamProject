@@ -1,0 +1,586 @@
+{% extends 'community/layout.html' %}
+
+{% block style %}
+.post_list_container {
+    display: flex;
+    position: absolute;
+    height: 90%;
+    width: 100%;
+}
+
+.post_list_sec1 {
+    text-align: center;
+    width: 16%;
+    height: 100%;
+    background-color: #FA4D55;
+    position: fixed;
+}
+
+.sec1user {
+    margin-top: 16%;
+}
+
+.sec1user p {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.list_user {
+    border: 2px solid #ffffff;
+    border-radius: 100px;
+    padding:10px;
+    width: 30%;
+    height: 30%;
+}
+
+.post_list_sec1_write a {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    border-radius: 3px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post_list_sec1_write a:hover {
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    background-color: #ffffff;
+    border: 1.5px solid #ffffff;
+    color: #FA4D55;
+    }
+
+.sec1_list a {
+    display: block;
+    color: #FA4D55;
+    font-size: 16px;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #F5F5F5;
+    border: 1.5px solid #ffffff;
+    border-radius: 3px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.sec1_list a:hover {
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    }
+
+
+.sec2_post > a {
+    display: block;
+}
+
+
+.post_list_sec2 {
+    width: 60%;
+    text-align: center;
+    background-color: #ffffff;
+    margin-left: 16%;
+}
+
+.sec2_post_list {
+    height: 150px;
+}
+
+.post-page-title p {
+    margin-top: 5%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.post-page-title #community-description {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: gray;
+    text-align: center;
+    margin-top: 1%;
+
+}
+
+.post-page-body {
+    margin-top: 1%;
+    height: 73%;
+    overflow-x: hidden;
+    margin-left: 12px;
+}
+
+.post-page-body::-webkit-scrollbar {
+    background: transparent;
+}
+
+/*검색창*/
+.sec2_search {
+    margin-right: 20px;
+    width: 30%;
+    margin-bottom: 1%;
+    float: right;
+}
+
+.sec2_search input {
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 7px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.sec2_search #search_btn {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 35px;
+    padding-right: 7px;
+    padding-left: 7px;
+    border-radius: 5px;
+}
+
+.sec2_search a {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+}
+
+/* 게시물 목록 */
+.post-table {
+    padding-top: 50px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+    height: 380px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    border-radius: 5px;
+}
+
+
+.post-table thead td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1.5px solid black;
+    border-bottom: 2px solid black;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #F5F5F5;
+}
+
+.post-table tr {
+    width: 100%;
+    margin-bottom: 8px;
+    height: 35px;
+    text-align: center;
+    padding: 5px;
+    display: table;
+}
+
+
+.post-table tbody a {
+    color: black;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.post-table tbody a:hover {
+    color: #424242;
+}
+
+
+
+.post-table tbody td {
+    text-align: center;
+    padding: 0;
+    margin: 5px;
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/* 페이지네이션 */
+.p_1_pgd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    padding-bottom: 16px;
+    color: #424242;
+}
+
+/* 실시간 인기글 */
+.post_list_sec3 {
+    background-color: #ffffff;
+    width: 25%;
+}
+
+.p_l_sec3_box {
+    width: 85%;
+    height: 90%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 8%;
+    border-radius: 5px;
+    border: 1.5px solid #FA4D55;
+    overflow-x: hidden;
+    padding: 10px;
+    box-shadow: 0 2px 2px #ececec, 0 2px 2px #eaeaea;
+}
+
+.p_l_sec3_box_title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FA4D55;
+    font-weight: bold;
+}
+
+.sec3_post_hot_post > a {
+    display: block;
+    padding: 10px;
+    color: black;
+    margin-top: 10px;
+    box-shadow: 0 2px 2px lightgray, 0 2px 2px lightgray;background-color: #ffffff;
+    border-radius: 3px;
+    border: none;
+}
+
+.p_l_sec3_box::-webkit-scrollbar {
+    background: transparent;
+}
+
+#hot-post-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+}
+
+#hot-post-content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+}
+
+     .search {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .search > span {
+            font-family: 'Julius Sans One', sans-serif;
+        }
+
+        .search > div {
+              display: inline-block;
+              position: relative;
+              filter: drop-shadow(0 1px gray);
+            }
+
+        .search > div:after {
+              content: "";
+              background: #434A54;
+              width: 4px;
+              height: 10px;
+              position: absolute;
+              top: 38px;
+              right: 2px;
+              transform: rotate(135deg);
+                border-radius: 20%;
+            }
+
+            #search_btn {
+                color: #000000;
+                font-size: 16px;
+                width: 18px;
+                height: 18px;
+                padding: 10px;
+                border: solid 2px #545d6a;
+                outline: none;
+                border-radius: 35px;
+                transition: width 0.5s;
+                background: #E8F0FE;
+                font-family: 'Julius Sans One', sans-serif;
+            }
+
+        .search > div > input::placeholder {
+              color: #000000;
+              opacity: 0;
+              transition: opacity 150ms ease-out;
+            }
+
+        #search_btn:hover::placeholder {
+              opacity: 1;
+            }
+
+        #search_btn:hover,
+        #search_btn:not(:placeholder-shown) {
+              width: 250px;
+            }
+
+            .newbtn ul li {
+            --c: #FA4D55;
+            color: var(--c);
+            font-size: 16px;
+            border: 1px solid var(--c);
+            border-radius: 0.5em;
+            width: 6em;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'KOMACON';
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: 0.5s;
+            margin: 1em;
+        }
+
+        .newbtn ul li span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: var(--c);
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
+
+        .newbtn ul li:hover {
+            color: white;
+        }
+
+        .newbtn ul li:hover span {
+            transform: translateY(0) scale(2);
+        }
+
+        .newbtn ul li span:nth-child(1) {
+            --n: 1;
+        }
+
+        .newbtn ul li span:nth-child(2) {
+            --n: 2;
+        }
+
+        .newbtn ul li span:nth-child(3) {
+            --n: 3;
+        }
+
+        .newbtn ul li span:nth-child(4) {
+            --n: 4;
+        }
+
+        .p_1_pgd a:link, .p_1_pgd a:visited, .p_1_pgd a:hover {
+            text-decoration:none;
+            color:black;
+        }
+{% endblock %}
+
+
+{% block content %}
+
+<div class="post_list_container">
+    <div class="post_list_sec1">
+        <div class="sec1user">
+            <img src="/static/user.png" alt="없음" class="list_user"
+                style="max-width: 150px; max-height: 150px; margin-top: 30px;">
+            <p class="sec1name">{{ user.last_name }} {{ user.first_name }}님</p>
+        </div>
+        <div class="post_list_sec1_write">
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:all_write' all_my_community.pk %}" class="sec1write_btn">글쓰기</a>
+            <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가 쓴 글</a>
+            <a href="{% url 'community:post_i_like' %}" class="sec1write_btn">좋아요 누른 글</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='unknown_user_post_list_sec1'>로그인하고 단디알아보기!</a>
+            {% endif %}
+        </div>
+        <hr style="border: solid 1px white; width:100%; margin-bottom: 9%; margin-top: 9%;">
+        <!-- 게시판 목록  -->
+        <div class="sec1_list">
+            <a href="{% url 'community:community_list' school.pk %}">
+                학교 커뮤니티
+            </a>
+            {% for all_community in all_communities %}
+            <a href="{% url 'community:all_post_list' all_community.pk %}">{{ all_community.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- <div class="p_l_container-sub"> -->
+    <div class="post_list_sec2">
+        <div class="post-page-title">
+            <p style="font-family: S-CoreDream-3Light">{{ all_my_community }}</p>
+            <div style="font-family: S-CoreDream-3Light" id="community-description">{{ description }}</div>
+        </div>
+
+        <div class="post-page-body">
+            <div class="sec2_post">
+                <!-- 검색기능  -->
+ <div class="search" style="display: block;">
+                    <span>GO SEARCH</span>
+                    <div>
+                        <input type="text" id="search_btn" onkeypress="javascript:if(event.keyCode == 13){postsearch()}" placeholder="제목을 검색하세요!" required>
+                    </div>
+                </div>
+                <nav class='newbtn' style="float: right" onclick="reloadfunc()">
+                          <ul>
+                            <li>
+                                모든 글 보기
+                                <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav>
+                <div class="post_list_overflow">
+                    <!-- 게시글 table  -->
+                    <table class="post-table">
+                        <thead>
+                            <tr>
+                                <td width=100>글 제목</td>
+                                <td width=300>글 내용</td>
+                                <td width=100>등록일</td>
+                                <td width=80>좋아요</td>
+                                <td width=80>댓글</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            {% for post in page.object_list %}
+                            <tr id="{{ post.id }}">
+                                <td width=100 id="post-list-title"><a
+                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
+                                </td>
+                                <td width=300 id="post-list-content"><a
+                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>
+                                </td>
+                                <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>
+                                <td width=80 id="post-list-like">{{post.like_users.count}}</td>
+                                <td width=80 id="post-list-comment">{{post.comments.count}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 페이지네이션 -->
+                <div class="p_1_pgd">
+                    {% if page.has_previous %}
+                    <a href="?page={{ page.previous_page_number }}" style="padding-right: 15px;">Previous </a>
+                    {% endif %}
+                    Page {{ page.number }} of {{ page.paginator.num_pages }}
+                    {% if page.has_next %}
+                    <a href="?page={{ page.next_page_number }}" style="padding-left: 15px;"> Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post_list_sec3">
+        <div class="p_l_sec3_box">
+            <div class="p_l_sec3_box_title"style="text-align: center; style=text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">
+                실시간 인기 글
+            </div>
+            <div class="sec3_post_hot_post">
+                {% for hot_post in hot_posts %}
+                {% if hot_post.like_users.count > 0 %}
+                <a href="{% url 'community:post_detail' hot_post.id %}">
+                    <div id="hot-post-title">{{ hot_post.title }}</div>
+                    <div id="hot-post-content">{{ hot_post.contents|truncatechars:10 }}</div>
+                </a>
+                {% else %}
+                {% endif%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function postsearch() {
+        var text = document.getElementById('search_btn').value;
+        if (text.length > 1) {
+            var url = window.location.href
+            var schoolid = 'all'
+            if (url.indexOf("page")) {
+                var communityid = url.replace("http://127.0.0.1:8000/community/","").split("/")[1]
+                console.log(communityid)
+            } else {
+                var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+                console.log(communityid)
+            }
+            console.log(schoolid)
+            $.ajax({
+                type: "post",
+                url: "{% url 'community:post_search_all' %}",
+                data: { "text": text, "schoolid": schoolid, "communityid": communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
+                success: function (response) {
+                    document.getElementById('search_btn').value = '';
+                    var post_id_list = response.search_postlist;
+                    console.log(post_id_list)
+                    count = 0;
+                    document.getElementById('tbody').innerHTML = ''
+                    {% for post in all_posts_community %}
+                    var postid = {{ post.id }};
+                    for (var i = 0; i < post_id_list.length; i++) {
+                        if (postid === post_id_list[i]) {
+                            document.getElementById('tbody').innerHTML += '<tr id="{{ post.id }}">\n' +
+                                '                                <td width=100 id="post-list-title"><a\n' +
+                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>\n' +
+                                '                                </td>\n' +
+                                '                                <td width=300 id="post-list-content"><a\n' +
+                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>\n' +
+                                '                                </td>\n' +
+                                '                                <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>\n' +
+                                '                                <td width=80 id="post-list-like">{{post.like_users.count}}</td>\n' +
+                                '                                <td width=80 id="post-list-comment">{{post.comments.count}}</td>\n' +
+                                '                            </tr>'
+                            count += 1;
+                        }
+                    }
+                    {% endfor %}
+        if (count === 0) {
+            console.log('하나도 없다글이')
+            document.getElementById('tbody').style.display = "none";
+        }
+    }, error: function() {
+        alert('error')
+    }
+        })
+        } else {
+        alert('두글자 이상 입력해주세요!')
+    }
+
+    }
+</script>
+<script>
+    function reloadfunc() {
+        var url = window.location.href
+        if (url.indexOf("page")) {
+            url = url.split('?')[0]
+            console.log(url)
+            location.href=url
+        } else {
+            location.href=url
+        }
+    }
+</script>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+{% endblock %}

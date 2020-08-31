@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPage</title>
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+    <script type="text/javascript" src="/path/to/awselect.js"></script>
+    <script type="text/javascript" src="javascript/signup.js"></script>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="/path/to/awdropdown.css" rel="stylesheet" />
+    <style>
+
+
+        header {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+            color: #FA4D55;
+        }
+
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+
+#home {
+    font-family: 'Binggrae-Bold';
+    font-size: 28px;
+    text-align: center;
+    width: 200px;
+}
+
+.head_sec1 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7px;
+    padding: 0;
+}
+
+.head_sec1 a {
+    margin: 0 15px;
+    font-family: 'MapoPeacefull';
+    font-size: 20px;
+    color: #FA4D55;
+    text-align: center;
+}
+
+.head_sec1 a:hover {
+    color: #424242;
+    text-align: center;
+    border-bottom: solid 2px #424242;
+}
+
+.head_sec1_sign {
+    margin-top: 7px;
+}
+
+.head_sec1_sign a {
+    margin: 0 15px;
+    font-family: 'MapoPeacefull';
+    font-size: 20px;
+}
+
+.head_sec1_sign a:hover {
+    color: #424242;
+    text-align: center;
+    border-bottom: solid 2px #424242;
+}
+
+        .mypage-wrapper {
+            margin: 0 auto;
+            width: 74%;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 150px;
+            margin-bottom: 100px;
+
+        }
+
+        .mypage-main-1 {
+            height: 500px;
+            width: 250px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 40px 45px 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        .mypage-name {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+        }
+
+
+        #mypage-info-detail>div:nth-child(1) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 1%;
+        }
+
+        #mypage-info-detail>div:nth-child(2) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 1%;
+        }
+
+        #mypage-info-detail>div:nth-child(3) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 0 0 40px 0;
+        }
+
+        .user_update {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .user_update:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .user_update:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .user_update:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .user_update:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .remove-account {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .remove-account:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .remove-account:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .remove-account:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .remove-account:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .mypage-main-2 {
+            height: 500px;
+            width: 250px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 40px 45px 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        .mypage-land {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+        }
+
+        .mypage-land-discription {
+            color: #555454;
+        }
+
+        .user-ttang-point {
+            font-size: 6em;
+            padding: 40px 0 40px 0;
+            font-weight: bold;
+            color: #FA4D55;
+        }
+
+        .mypage-main-3 {
+            height: 500px;
+            width: 250px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 40px 45px 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        .mypage-review {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+
+        }
+
+        .mypage-my-review {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .mypage-my-review:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .mypage-my-review:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .mypage-my-review:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .mypage-my-review:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .mypage-go-review {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .mypage-go-review:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .mypage-go-review:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .mypage-go-review:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .mypage-go-review:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+
+
+        #mypagefooter {
+            position: static;
+            float: bottom;
+        }
+        footer{
+            display: none;
+        }
+        /* 폰트 */
+
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Eoe_Zno_L';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<header>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        {% if user.is_authenticated %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="{% url 'community:all_community_list' %}" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+        {% else %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a onclick="notlogin()" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+        {% endif %}
+    </div>
+</header>
+
+<body>
+    <div class="mypage-wrapper">
+        <div class="mypage-main-1">
+            <div class="mypage-box" id="info">
+                <div class="mypage-name">회원 정보</div>
+                <div id="mypage-info-detail">
+                    <div>{{user_info.last_name}}{{ user_info.first_name }}</div>
+                    <div>{{ user_info.school }}</div>
+                    <div>{{ user_info.email }}</div>
+                </div>
+                <div class="mypage-buttonbox">
+                    <a href="{% url 'user:user_update' %}">
+                        <button class="user_update">회원정보 수정</button>
+                    </a>
+                    <a href="{% url 'community:user_delete' %}">
+                        <button class="remove-account">회원 탈퇴</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mypage-main-2">
+            <div class="box" id="user-point">
+                <div class="mypage-land">내 땅문서</div>
+                <div class="mypage-land-discription" style="text-align: justify">커뮤니티에 글을 쓰면 땅문서 1개, 내가 산 곳의 리뷰를 작성하면 땅문서 10개를 획득할 수 있어요!<br/>다른 사람들의
+                    리뷰를 볼 경우 땅문서 3개가 차감됩니다.</div>
+                <div class="user-ttang-point">{{ user.point }}개</div>
+            </div>
+            <div class="mypage-box" id="auth">
+            </div>
+        </div>
+        <div class="mypage-main-3">
+            <div class="mypage-review">거주 후기</div>
+            <div class="mypage-buttonbox">
+                <a href="http://127.0.0.1:8000/review/myreview">
+                    <button class="mypage-my-review" style="margin-top: 50px;">내가 쓴 리뷰</button>
+                </a>
+                <a href="{% url 'review:createaddress' %}">
+                    <button class="mypage-go-review">거주 후기 쓰기</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+<footer id="mypagefooter">
+    <div class="dandi"> 단디 알아방</div>
+    <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+    <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+</footer>
+
+<script>
+    function notlogin() {
+        var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url "user:login" %}';
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
+    }
+</script>
+</body>
+
+</html>

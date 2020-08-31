@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <style>
+        header {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-top: 4px;
+            z-index: 100;
+            color: #FA4D55;
+        }
+
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+
+            #home {
+                font-family: 'Binggrae-Bold';
+                font-size: 28px;
+                text-align: center;
+                width: 200px;
+            }
+
+            .head_sec1 {
+                display: flex;
+                flex-direction: row;
+                margin-top: 7px;
+                padding: 0;
+            }
+
+            .head_sec1 a {
+                margin: 0 15px;
+                font-family: 'MapoPeacefull';
+                font-size: 20px;
+                color: #FA4D55;
+                text-align: center;
+            }
+
+            .head_sec1 a:hover {
+                color: #424242;
+                text-align: center;
+                border-bottom: solid 2px #424242;
+            }
+
+            .head_sec1_sign {
+                margin-top: 7px;
+            }
+
+            .head_sec1_sign a {
+                margin: 0 15px;
+                font-family: 'MapoPeacefull';
+                font-size: 20px;
+            }
+
+            .head_sec1_sign a:hover {
+                color: #424242;
+                text-align: center;
+                border-bottom: solid 2px #424242;
+            }
+        .user-update-wrapper {
+            margin: 0 auto;
+            width: 450px;
+            padding-top: 120px;
+            height: 180px;
+        }
+
+        .user-update-container {
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 30px 55px;
+            height: 400px;
+
+        }
+
+        .user-update-logo {
+            font-size: 50px;
+            color: #424242;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            font-family: 'Anton', sans-serif;
+            margin-bottom: 25px;
+        }
+
+        #user-update-form>input {
+            float: right;
+            border: 2px solid #dadada;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+        #user-update-form>input:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 0 0 10px #9ecaed;
+        }
+
+        .user-update-email {
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+
+        }
+
+        .user-update-password {
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+
+        /*button 속성*/
+
+        .user-update-button {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .user-update-button:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .user-update-button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .user-update-button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .user-update-button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .justify-content-center {
+            height: 700px;
+        }
+
+
+        .user-update-footer {
+            position: static;
+            bottom: 0;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        {% if user.is_authenticated %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="{% url 'community:all_community_list' %}" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+        {% else %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a onclick="notlogin()" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+        {% endif %}
+    </div>
+</header>
+<div class="d-flex justify-content-center">
+    <div class="user-update-wrapper">
+        <div class="user-update-container">
+            <div class="user-update-logo">
+                USER UPDATE
+            </div>
+            <form id="user-update-form" method="POST">
+                {% csrf_token %}
+                {{ user_change_form.username }}
+                {{ user_change_form.first_name }}
+                {{ user_change_form.last_name }}
+                <input class="user-update-button" type="submit" value="저장" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="user-update-footer" style="position: absolute;bottom: 0;">
+    <div class="dandi"> 단디 알아방</div>
+    <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+    <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+</footer>
+<script>
+    function notlogin() {
+        var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url "user:login" %}';
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
+    }
+</script>
+</body>
+</html>

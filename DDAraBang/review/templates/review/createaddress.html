@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>showhouses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
+    <link rel="stylesheet" href="{% static 'community/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        #createlabel {
+            padding: 0 0 0 0;
+            background: transparent;
+            margin: 0 0 0 0;
+            border: white;
+        }
+
+        #createaddheader {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+            color: #FA4D55;
+        }
+
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+
+        #home {
+            font-family: 'Binggrae-Bold';
+            font-size: 28px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .head_sec1 {
+            display: flex;
+            flex-direction: row;
+            margin-top: 7px;
+            padding: 0;
+        }
+
+        .head_sec1 a {
+            margin: 0 15px;
+            font-family: 'MapoPeacefull';
+            font-size: 20px;
+            color: #FA4D55;
+            text-align: center;
+        }
+
+        .head_sec1 a:hover {
+            color: #424242;
+            text-align: center;
+            border-bottom: solid 2px #424242;
+        }
+
+        .head_sec1_sign {
+            margin-top: 7px;
+        }
+
+        .head_sec1_sign a {
+            margin: 0 15px;
+            font-family: 'MapoPeacefull';
+            font-size: 20px;
+        }
+
+        .head_sec1_sign a:hover {
+            color: #424242;
+            text-align: center;
+            border-bottom: solid 2px #424242;
+        }
+
+
+        #createaddfooter {
+            z-index: 100;
+        }
+
+        html {}
+
+        body {
+            background-color: white;
+        }
+
+        div {
+            display: flex;
+        }
+
+        p {
+            font-family: 'Eoe_Zno_L';
+            font-size: 18px;
+        }
+
+        textarea {
+            font-family: 'Eoe_Zno_L';
+            font-size: 16px;
+            color: black;
+        }
+
+        .newbtn ul li {
+            --c: #FA4D55;
+            color: var(--c);
+            font-size: 16px;
+            border: 1px solid var(--c);
+            border-radius: 0.5em;
+            width: 6em;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'KOMACON';
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: 0.5s;
+            margin: 1em;
+        }
+
+        .newbtn ul li span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: var(--c);
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
+
+        .newbtn ul li:hover {
+            color: white;
+        }
+
+        .newbtn ul li:hover span {
+            transform: translateY(0) scale(2);
+        }
+
+        .newbtn ul li span:nth-child(1) {
+            --n: 1;
+        }
+
+        .newbtn ul li span:nth-child(2) {
+            --n: 2;
+        }
+
+        .newbtn ul li span:nth-child(3) {
+            --n: 3;
+        }
+
+        .newbtn ul li span:nth-child(4) {
+            --n: 4;
+        }
+
+
+        input {
+            font-family: 'Eoe_Zno_L';
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .create-address-body {
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .create-address-title {
+            width: 100%;
+            padding-top: 30px;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .create-address-title p {
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'S-CoreDream-3Light';
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        /*본문*/
+        .create-address-detail {
+            background-color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .create-detail-1 {
+            margin-top: 20px;
+            padding: 20px;
+            width: 60%;
+            background-color: white;
+            border-radius: 6px;
+            flex-direction: column;
+        }
+
+        #address-1 {
+            flex-direction: row;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+
+        #address-1 p {
+            font-size: 18px;
+        }
+
+        #address-1 button {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        #address-2 input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #address-2 span {
+            font-family: 'Eoe_Zno_L';
+            font-size: 15px;
+        }
+
+        .create-detail-2 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            padding: 20px;
+            width: 60%;
+            background-color: white;
+            border-radius: 6px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        form#createform {
+            width: 100%;
+        }
+
+        #address-detail {
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+
+        #address-detail input {
+            width: 60%;
+            margin-bottom: 5px;
+        }
+
+        #address-detail p {
+            margin-bottom: 5px;
+        }
+
+        #home-image {
+            align-items: center;
+        }
+
+        #home-floor {
+            width: 100%;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+
+        #home-floor p {
+            margin-right: 20px;
+        }
+
+        #home-floor input {
+            margin: 0;
+        }
+
+        .pros-cons {
+            width: 100%;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+
+        #home-pros-cons {
+            width: 100%;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        #home-pros-cons p {
+            padding-bottom: 10px;
+        }
+
+        #home-pros-cons textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        .home-detail-question {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+
+        }
+
+        .home-detail-question tr,
+        td {
+            border-bottom: solid 1px lightgray;
+        }
+
+        .home-detail-question td#table-level {
+            font-family: 'Eoe_Zno_L';
+            margin: auto 0;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .home-detail-question textarea {
+            font-family: 'Eoe_Zno_L';
+            padding: 10px;
+        }
+
+
+
+        #recommend {
+            margin: 20px;
+            justify-content: center;
+        }
+
+        #recommend p {
+            margin-right: 20px;
+        }
+
+        #recommend input {
+            margin-left: 10px;
+        }
+
+
+        /* 별점 서식 */
+
+        #star_grade {
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        #star_grade p {
+            margin-right: 20px;
+        }
+
+        #star_grade a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: gray;
+        }
+
+        #star_grade a.on {
+            color: #ff9090;
+        }
+
+        .btn {
+            border: solid 1px black;
+            background: white;
+            color: black;
+        }
+
+        #detail-save {
+            justify-content: center;
+        }
+
+        #detail-save a {
+            padding: 10px 20px;
+            border-radius: 3px;
+            border: none;
+            background-color: #FA4D55;
+            color: white;
+            font-family: 'Eoe_Zno_L';
+        }
+
+        #detail-save a:hover {
+            box-shadow: 0 0 5px 3px lightgray;
+            font-weight: bold;
+        }
+
+        input#sample4_jibunAddress,
+        input#sample4_roadAddress {
+            height: 20px;
+            margin-top: 17px;
+        }
+
+        input.upload-name {
+            height: 30px;
+            margin-top: 19px;
+        }
+
+        form#createform {
+            border-top: 1.5px solid #FA4D55;
+        }
+
+
+        /* 폰트 */
+
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Eoe_Zno_L';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="createaddheader">
+        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        {% if user.is_authenticated %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="{% url 'community:all_community_list' %}" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+            {% else %}
+            <div class="head_sec1">
+                <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+                <div id="community"><a onclick="notlogin()" class='head_link'>커뮤니티</a></div>
+            </div>
+            <div class="head_sec1_sign">
+                <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+                <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+                {% endif %}
+            </div>
+    </header>
+
+
+    <div class="create-address-body" style="overflow-y: auto;">
+        {% if user.is_authenticated %}
+        <div class="create-address-title">
+            <p style="margin-top: 90px;">거주 후기 작성하기</p>
+        </div>
+
+        <div class="create-address-detail">
+            <div class="create-detail-1">
+                <div id="address-1">
+                    <p>집 주소찾기:</p>
+                    <nav class='newbtn' onclick="sample4_execDaumPostcode()">
+                        <ul>
+                            <li>
+                                주소찾기
+                                <span></span><span></span><span></span><span></span>
+                            </li>
+                        </ul>
+                    </nav>
+                    {#                        <button id="findaddress" onclick="sample4_execDaumPostcode()" style="#}
+                    {#    color:#ecf0f1;text-decoration:none;border-radius:5px;border:solid 1px darkgray;background:whitesmoke;text-align:center;padding:0;margin:0;width: 100px;height: 40px;color: black;#}
+                    {#  -webkit-transition: all 0.1s;-moz-transition: all 0.1s;transition: all 0.1s;#}
+                    {##}
+                    {#  -webkit-box-shadow: 0px 6px 0px lightblue;#}
+                    {#  -moz-box-shadow: 0px 5px 0px darkgray;box-shadow: 0px 3px 0px darkgray; margin-left: 10px;">주소 찾기</button>#}
+                </div>
+                <div id="address-2">
+                    <input type="text" id="sample4_roadAddress" placeholder="도로명 주소">
+                    <input type="text" id="sample4_jibunAddress" placeholder="지번 주소">
+                    <span id="guide" style="color:#999;display:none"></span>{#    이 span태그없애면 절대안돼요!!!-지영#}
+
+
+                    <nav onclick='latchanger()' class='newbtn'>
+                        <ul>
+                            <li>
+                                주소확인
+                                {#                              <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()"/>#}
+                                <span></span><span></span><span></span><span></span>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+                    <input id="adcheck" type="text" name="adcheck" style="color: #3875d7;border:none;">
+
+                </div>
+            </div>
+            <div class="create-detail-2">
+                <form action="{% url 'review:createaddress' %}" method="POST" enctype="multipart/form-data"
+                    id="createform">
+                    {% csrf_token %}
+                    <div id="address-detail">
+                        <p style="display: none;">상세 집 주소: </p>
+                        <input id="houseaddress" name="houseaddress" type="text" style="display: none;">
+                        <input id="lat" name="lat" type="text" style="display: none;">
+                        <input id="lng" name="lng" type="text" style="display: none;">
+                    </div>
+                    <div id="home-image">
+                        <p>집 사진:</p>
+                        <div class="filebox">
+                            <input class="upload-name" value="파일선택" disabled="disabled"
+                                style="font-size: inherit; font-family: inherit; line-height: normal; vertical-align: middle; background-color: #f5f5f5; border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; -webkit-appearance: none; /* 네이티브 외형 감추기 */ -moz-appearance: none; appearance: none; margin-left: 10px;">
+                            <label for="houseimage" id="createlabel">
+                                <nav onclick='' class='newbtn'>
+                                    <ul>
+                                        <li>
+                                            업로드
+                                            <span></span><span></span><span></span><span></span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </label>
+                            <input type="file" id="houseimage" class="upload-hidden" accept="image/*" name="image"
+                                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0;">
+                        </div>
+
+                    </div>
+                    <div id="home-floor">
+                        <p>내가 살았던 곳은?</p>
+                        <input id="floor1" type="radio" name="floor" value="지상" />
+                        <p>지상</p>
+                        <input type="radio" name="floor" value="반지하" />
+                        <p>반지하</p>
+                        <input type="radio" name="floor" value="지하" />
+                        <p>지하</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div id="home-pros-cons">
+                            <p>집의 장점</p>
+                            <textarea id="advantage" name="advantage"></textarea>
+                        </div>
+                        <div id="home-pros-cons">
+                            <p>집의 단점</p>
+                            <textarea id="disadvantage" name="disadvantage"></textarea>
+                        </div>
+                    </div>
+
+                    <table class="home-detail-question">
+                        <tr>
+                            <td width="80">
+                                <p>수압</p>
+                            </td>
+                            <td width="300" id="table-level">
+                                <input id='water1' type="radio" name="water" value="상" />상
+                                <input id='water2' type="radio" name="water" value="중" />중
+                                <input id='water3' type="radio" name="water" value="하" />하
+                            </td>
+                            <td width="300"><textarea name="waterplus" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="80">
+                                <p>채광</p>
+                            </td>
+                            <td width="300" id="table-level">
+                                <input id='light1' type="radio" name="light" value="상" />상
+                                <input id='light2' type="radio" name="light" value="중" />중
+                                <input id='light3' type="radio" name="light" value="하" />하
+                            </td>
+                            <td width="300"><textarea name="lightplus" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="80">
+                                <p>방음</p>
+                            </td>
+                            <td width="300" id="table-level">
+                                <input id='noise1' type="radio" name="noise" value="상" />상
+                                <input id='noise2' type="radio" name="noise" value="중" />중
+                                <input id='noise3' type="radio" name="noise" value="하" />하
+                            </td>
+                            <td width="300"><textarea name="noiseplus" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="80">
+                                <p>보안</p>
+                            </td>
+                            <td width="300" id="table-level">
+                                <input id='security1' type="radio" name="security" value="상" />상
+                                <input id='security2' type="radio" name="security" value="중" />중
+                                <input id='security3' type="radio" name="security" value="하" />하
+                            </td>
+                            <td width="300"><textarea name="securityplus" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="80">
+                                <p>해충</p>
+                            </td>
+                            <td width="300" id="table-level">
+                                <input id='bug1' type="radio" name="bug" value="상" />상
+                                <input id='bug2' type="radio" name="bug" value="중" />중
+                                <input id='bug3' type="radio" name="bug" value="하" />하
+                            </td>
+                            <td width="300"><textarea name="bugplus" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="120">
+                                <p>월세/관리비</p>
+                            </td>
+                            <td width="300"></td>
+                            <td width="300"><textarea name="money" cols="30" rows="4"
+                                    placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea></td>
+                        </tr>
+                    </table>
+
+                    <div id="recommend">
+                        <p>지인에게 추천하시겠습니까?</p>
+                        <input id="yes" type="radio" name="recommend" value="Yes" />
+                        <p>Yes</p>
+                        <input id="no" type="radio" name="recommend" value="No" />
+                        <p>No</p>
+                    </div>
+                    <div id="star_grade">
+                        <p>별점:</p>
+                        <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                        <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                        <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                        <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                        <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                    </div>
+                    <div id="detail-save">
+                        <input id="ratingscore" type="text" name="rating" style=" display:none; " />
+                        <a style="cursor:pointer;" class="btn" id="checkbutton" onclick="formchecker()">저장</a>
+                        <input style="display: none" type="submit" class="inputbutton" id="inputbutton" value="저장" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <footer id="createaddfooter">
+            <div class="dandi"> 단디 알아방</div>
+            <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+            <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+        </footer>
+
+        {% else %}
+        <div>로그인하셔야 글을 쓸 수 있습니다.</div>
+        <a href="{% url "user:login" %}">로그인</a>
+        <a href="{% url "user:signup" %}">회원가입</a>
+
+        <footer id="createaddfooter">
+            <div class="dandi"> 단디 알아방</div>
+            <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+            <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+        </footer>
+        {% endif %}
+
+
+
+
+
+        <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
+
+        <script>
+            function latchanger() {
+                var roadAddress = document.getElementById("sample4_roadAddress").value
+                var jibunAddress = document.getElementById("sample4_jibunAddress").value
+
+                if (jibunAddress === '') {
+                    var addresscheck = roadAddress
+                } else if (roadAddress === '') {
+                    var addresscheck = jibunAddress
+                } else {
+                    var addresscheck = jibunAddress
+                }
+
+
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(addresscheck, function (result, status) {
+
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
+                        var lat = result[0].y
+                        var lng = result[0].x
+                        console.log(lat, lng)
+                        document.getElementById("lat").value = lat
+                        document.getElementById("lng").value = lng
+                        document.getElementById('adcheck').value = "주소가 확인되었습니다"
+                        document.getElementById("houseaddress").value = addresscheck
+                    }
+                });
+            }
+
+        </script>
+
+
+
+
+        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+            //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+            function sample4_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function (data) {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var roadAddr = data.roadAddress; // 도로명 주소 변수
+                        var extraRoadAddr = ''; // 참고 항목 변수
+
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                            extraRoadAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
+                            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if (extraRoadAddr !== '') {
+                            extraRoadAddr = ' (' + extraRoadAddr + ')';
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById("sample4_roadAddress").value = roadAddr;
+                        document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                        var guideTextBox = document.getElementById("guide");
+                        // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                        if (data.autoRoadAddress) {
+                            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                            guideTextBox.style.display = 'block';
+
+                        } else if (data.autoJibunAddress) {
+                            var expJibunAddr = data.autoJibunAddress;
+                            guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                            guideTextBox.style.display = 'block';
+                        } else {
+                            guideTextBox.innerHTML = '';
+                            guideTextBox.style.display = 'none';
+                        }
+                    }
+                }).open();
+            }
+        </script>
+
+        {#jquery script 추가#}
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        {#별점 script#}
+        <script>
+            $('#star_grade a').click(function () {
+                $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */
+                $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+                rating = $('.on').length;
+                document.getElementById("ratingscore").value = rating
+                return false;
+            });
+        </script>
+
+
+        {#입력안되면 alert message 뜨게하는 script#}
+        <script>
+
+            function formchecker() {
+                var houseaddress = document.getElementById("houseaddress")
+                var roadaddress = document.getElementById("sample4_roadAddress")
+                var jibunaddress = document.getElementById("sample4_jibunAddress")
+                var houseimage = document.getElementById("houseimage").value
+                var floor = document.querySelector('input[name="floor"]:checked')
+                var advantage = document.getElementById("advantage")
+                var disadvantage = document.getElementById("disadvantage")
+                var water = document.querySelector('input[name="water"]:checked')
+                var light = document.querySelector('input[name="light"]:checked')
+                var noise = document.querySelector('input[name="noise"]:checked')
+                var security = document.querySelector('input[name="security"]:checked')
+                var bug = document.querySelector('input[name="bug"]:checked')
+                var recommend = document.querySelector('input[name="recommend"]:checked')
+                var rating = document.getElementById("ratingscore").value
+
+                if (houseaddress.value === '') {
+                    if (roadaddress.value != '' || jibunaddress.value != '') {
+                        alert('집주소를 확인하지 않으셨네요! 주소확인 버튼으로 주소를 확인해주세요!')
+                        $('#checkaddressbtn').focus()
+                    } else if (roadaddress.value === '' && jibunaddress.value === '') {
+                        alert('집주소가 입력되지 않았습니다! 주소찾기 버튼으로 주소를 입력해주세요!');
+                        $('#findaddress').focus();
+                    }
+                } else if (houseimage === '') {
+                    alert('집사진이 추가되지 않았습니다! 집사진은 필수예요!')
+                    $('#houseimage').focus();
+                } else if (floor === null) {
+                    alert('지상/반지하/지하 여부를 표시해 주세요.')
+                } else if (advantage.value === '') {
+                    alert('집에 대한 장점은 필수 입력 사항입니다.')
+                    advantage.focus();
+                } else if (disadvantage.value === '') {
+                    alert('집에 대한 단점은 필수 입력 사항입니다.')
+                    disadvantage.focus();
+                } else if (water === null) {
+                    alert('수압 평가는 필수 입력 사항입니다.')
+                } else if (light === null) {
+                    alert('채광 평가는 필수입력 사항입니다.')
+                } else if (noise === null) {
+                    alert('방음 평가는 필수 입력 사항입니다.')
+                } else if (security === null) {
+                    alert('보안 평가는 필수 입력 사항입니다.')
+                } else if (bug === null) {
+                    alert('해충 평가는 필수 입력 사항입니다.')
+                } else if (recommend === null) {
+                    alert('지인에게 추천할지 여부를 표시해주세요.')
+                } else if (rating === '') {
+                    alert('별점은 1점부터 5점까지 줄 수 있습니다! 별점을 주세요!')
+                } else {
+                    var inputbutton = document.getElementById("inputbutton")
+                    inputbutton.click();
+                }
+            }
+
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var fileTarget = $('.filebox .upload-hidden'); fileTarget.on('change', function () { // 값이 변경되면
+                    if (window.FileReader) { // modern browser
+                        var filename = $(this)[0].files[0].name;
+                    } else { //old IE
+                        var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+                    }
+                    // 추출한 파일명 삽입
+                    $(this).siblings('.upload-name').val(filename);
+                });
+            });
+        </script>
+
+        <script>
+            function notlogin() {
+                var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+                if (confirm_test == true) {
+                    location = '{% url "user:login" %}';
+
+                } else if (confirm_test == false) {
+                    alert("취소(아니오)를 누르셨습니다.");
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
