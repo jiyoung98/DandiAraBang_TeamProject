@@ -1,6 +1,7 @@
 <h1>단디알아방</h1>
 </br>
 <p></p>
+<p>이 레포지토리는 복사본입니다! 원본은 -> https://github.com/pirogramming/DD_AraBang <- </p>
 
 ## 1. 서비스 소개 
 <p>자취방/ 하숙집 사용후기 공유 커뮤니티 서비스</p>
