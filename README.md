@@ -1,7 +1,7 @@
 <h1>단디알아방</h1>
 </br>
 <p></p>
-<p>이 레포지토리는 단디알아방 팀원 한지영(jiyoung98)의 복사본입니다! 원본은 -> https://github.com/pirogramming/DD_AraBang <- </p>
+<p>이 레포지토리는 단디알아방 팀원 한지영(jiyoung98)의 복사본입니다! 원본은-> https://github.com/pirogramming/DD_AraBang</p>
 
 ## 1. 서비스 소개 
 <p>자취방/ 하숙집 사용후기 공유 커뮤니티 서비스</p>
@@ -18,8 +18,46 @@ SQLite
 </br>
 </br>
 
+## 4. Preview
+![image](https://user-images.githubusercontent.com/61833149/91725161-4bc73b00-ebd9-11ea-9046-69173802e2b8.png)
 
-## 4. 서비스 주요기능
+![image](https://user-images.githubusercontent.com/61833149/91725188-55e93980-ebd9-11ea-8687-f7f2a6e857d3.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725504-cee89100-ebd9-11ea-9eae-d4c1bb083ef9.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725538-d9a32600-ebd9-11ea-9263-289ede3fe52b.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725233-67cadc80-ebd9-11ea-85fb-f3c303057de1.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725266-73b69e80-ebd9-11ea-99d7-1644922c8b4b.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725305-829d5100-ebd9-11ea-9585-57fa00ca8c32.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725356-95b02100-ebd9-11ea-9691-42395a8d235e.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725390-a2cd1000-ebd9-11ea-90b7-b0454ae8d4c2.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725433-b1b3c280-ebd9-11ea-906e-ca4c39cade4c.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725468-c09a7500-ebd9-11ea-8c8b-25d8d5218f26.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725561-e0ca3400-ebd9-11ea-89c9-1d5f7147fc46.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725576-e889d880-ebd9-11ea-9803-3cc742aa9228.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725604-f17aaa00-ebd9-11ea-82e4-fe35d135fd17.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725625-f93a4e80-ebd9-11ea-8a29-b941720acc04.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725649-01928980-ebda-11ea-8d5b-207506b92e1e.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725728-1bcc6780-ebda-11ea-9af8-b73d565ba6c2.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91725777-28e95680-ebda-11ea-8685-3e8c2a92325e.png)
+
+
+
+## 5. 서비스 주요기능
 
 * ### 1. mainpage
 <p>- 서비스 상세설명</p>
@@ -61,5 +99,5 @@ SQLite
 </br>
 </br>
   
-## 5. 팀원소개
+## 6. 팀원소개
  <img width="752" alt="img" src="https://user-images.githubusercontent.com/65646971/90873543-47c93b00-e3d9-11ea-956e-bb2dc69dc36b.PNG">  
